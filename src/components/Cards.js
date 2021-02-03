@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row';
 import WorkDone from './WorkDone.js'
+import Button from 'react-bootstrap/Button'
 
 const cardData = 
    [
@@ -48,6 +49,7 @@ export class Cards extends Component {
              {item.text}
             </Card.Text>
             {this.state.access ? <WorkDone hours={item.hours} project={item.project}/> : null}
+            <Button variant="primary" href='/work'>Work Log</Button>
           </Card.Body>    
         </Card>
         )

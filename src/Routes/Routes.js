@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from '../Login';
 import Home from '../Home'
 import FormsHome from '../components/FormsHome'
+import WorkLog from '../components/WorkLog'
 
 class Routes extends React.Component {
   render(){
@@ -14,7 +15,7 @@ class Routes extends React.Component {
           <Route exact path="/" component={Login} />
           <Route path="/home" component={Home} />
           <Route path="/form" component={FormsHome} />
-          {/* <Route path="/workdone" component={WorkDone} /> */}
+          <Route path="/work" component={WorkLog} />
         </Switch>
       </Router>
     </React.Fragment>
