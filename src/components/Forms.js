@@ -3,6 +3,12 @@ import './Forms.css'
 
 var format = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
 
+const projectData = [
+  { value: 'GSSP', name: 'GSSP' },
+  { value: 'ALM', name: 'ALM' },
+  { value: 'CDE', name: 'CDE' }           
+];
+
 class Forms extends Component {
   constructor(props) {
     super(props);
@@ -55,11 +61,11 @@ class Forms extends Component {
         onChange={this.myChangeHandler}
       />
       <p>Enter your project:</p>
-      <select onChange={this.myChangeHandler} name="project" className="select-dropdown">
-          <option value="GSSP">GSSP</option>
-          <option value="CDE">CDE</option>
-           <option value="ALM">ALM</option>
-       </select>
+       <select name="project" value={projectData.value} onChange={this.myChangeHandler} className="select-dropdown">
+         {projectData.map((e, key) => {
+         return <option key={key} value={e.value}>{e.name}</option>;
+         })}
+        </select>
        <br></br>
        <br></br>
        <p>Enter your project description:</p>
