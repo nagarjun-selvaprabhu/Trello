@@ -9,6 +9,19 @@ const projectData = [
   { value: 'CDE', name: 'CDE' }           
 ];
 
+const TimeData = [
+  { value: "0 Hour", name: '9 AM' },
+  { value: "1 Hour", name: '10 AM' },
+  { value: "2 Hour", name: '11 AM' },
+  { value: "3 Hour", name: '12 Noon' },          
+  { value: "4 Hour", name: '1 PM' },
+  { value: "5 Hour", name: '2 PM' },
+  { value: "6 Hour", name: '3 PM' },
+  { value: "7 Hour", name: '4 PM' },
+  { value: "8 Hour", name: '5 PM' },
+  { value: "9 Hour", name: '6 PM' },
+];
+
 class Forms extends Component {
   constructor(props) {
     super(props);
@@ -76,18 +89,11 @@ class Forms extends Component {
         onChange={this.myChangeHandler}
       />
       <p>Time Till Work Done:</p>
-      <select onChange={this.myChangeHandler} name="timeOfWork" className="select-dropdown">
-          <option value="0 Hour">9 AM</option>
-          <option value="1 Hour">10 AM</option>
-          <option value="2 Hour">11 AM</option>
-          <option value="3 Hour">12 Noon</option>
-          <option value="4 Hour">1 PM</option>
-          <option value="5 Hour">2 PM</option>
-          <option value="6 Hour">3 PM</option>
-          <option value="7 Hour">4 PM</option>
-          <option value="8 Hour">5 PM</option>
-          <option value="9 Hour">6 PM</option>
-       </select>
+      <select name="timeOfWork" value={TimeData.value} onChange={this.myChangeHandler} className="select-dropdown">
+         {TimeData.map((e, key) => {
+         return <option key={key} value={e.value}>{e.name}</option>;
+         })}
+        </select>
        <br></br>
        <br></br>
        {this.state.errormessage}
