@@ -1,0 +1,39 @@
+#work {
+    font-family: 'Nunito';
+     background-color:  #5d8fc9;
+  }
+
+#login{
+    width:350px;
+    border-radius: 25px;
+    margin:150px auto;
+        font-family: 'Nunito';
+  background-color:  #5d8fc9;
+}
+
+input[type="submit"] {
+    background: rgb(0, 255, 221);
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background: #17c;
+  }
+
+  input[type="submit"]:focus {
+    border-color: #05a;
+  }
+
+  input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    padding: 16px;
+    outline: 0;
+    font-family: inherit;
+    font-size: 0.95em;
+  }
