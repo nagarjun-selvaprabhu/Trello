@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Login.css';
+import axios from 'axios'
 
 var format = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
 
@@ -34,11 +35,17 @@ class Login extends Component {
 
       submitHandler = (event) => {
         event.preventDefault();
-        let name = this.state.username;
-        let pass = this.state.password;
-        if(name==='admin'&& pass==='admin'){
-        this.setState({ access: true });
-        }
+        const userName = this.state.username;
+        const passWord = this.state.password;
+    
+        axios.post(`http://localhost:8080/login`, { userName,passWord })
+          .then(res => {
+            if(res.data){
+            this.setState({ access: true });
+            }
+            console.log(res);
+            console.log(res.data);
+          })
       };
 
 
