@@ -11,6 +11,7 @@ class Login extends Component {
           username: '',
           password: '',
           errormessage: '',
+          wrong: '',
           access: false,
         };
       }
@@ -42,6 +43,9 @@ class Login extends Component {
           .then(res => {
             if(res.data){
             this.setState({ access: true });
+            }
+            else{
+              this.setState({ wrong: 'Username & Password is wrong'})
             }
             console.log(res);
             console.log(res.data);
@@ -82,6 +86,7 @@ class Login extends Component {
           <br></br>
           {this.state.errormessage}
           <input type='submit' id="button" value="Log in"/>
+        <strong>{this.state.wrong}</strong>
           </form>
          </div>
        </div>
