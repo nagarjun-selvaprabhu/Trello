@@ -13,7 +13,7 @@ class WorkLog extends Component {
       };
 
       componentDidMount() {
-        axios.get(`http://localhost:8080/list`)
+        axios.get(`http://localhost:8082/list`)
           .then(res => {  
             console.log(res.data);
             const workLog = res.data;
