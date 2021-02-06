@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Forms.css'
+import axios from 'axios'
 
 var format = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
 
@@ -30,7 +31,7 @@ class Forms extends Component {
       project: '',
       text: '',
       errormessage: '',
-      timeOfWork: '',
+      hours: '',
     };
   }
 
@@ -54,6 +55,17 @@ class Forms extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
+    const name = this.state.name;
+    const project = this.state.project;
+    const text = this.state.text;
+    const hours = this.state.hours;
+
+    axios.post(`http://localhost:8080/savecard`, { name,project,text,hours })
+    .then(res => {
+      // this.setState({ name: this.name,project:this.project,text:this.text,timeOfWork:this.timeOfWork });
+      console.log(res);
+      console.log(res.data);
+    })
     console.log(this.state);
   };
 
@@ -89,7 +101,7 @@ class Forms extends Component {
         onChange={this.myChangeHandler}
       />
       <p>Time Till Work Done:</p>
-      <select name="timeOfWork" value={TimeData.value} onChange={this.myChangeHandler} className="select-dropdown">
+      <select name="hours" value={TimeData.value} onChange={this.myChangeHandler} className="select-dropdown">
          {TimeData.map((e, key) => {
          return <option key={key} value={e.value}>{e.name}</option>;
          })}

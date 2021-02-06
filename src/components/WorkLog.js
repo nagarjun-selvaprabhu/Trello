@@ -1,84 +1,64 @@
-import React, { Component } from 'react'
+import React, { Component  } from 'react'
 import NavigationBar from './NavigationBar'
 import Table from 'react-bootstrap/Table'
+import axios from 'axios'
 
 class WorkLog extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        workLog: [],
+        };
+        console.log('[WorkLog.js] constructor');
+      };
+
+      componentDidMount() {
+        axios.get(`http://localhost:8080/list`)
+          .then(res => {  
+            console.log(res.data);
+            const workLog = res.data;
+            this.setState({ workLog });
+          })
+          console.log(this.state);
+      }
+
     render() {
+
         return (
             <div>
-                <NavigationBar />
-                <Table striped bordered hover>
-                 <thead>
+            <NavigationBar />
+            <div>
+            <Table striped bordered hover variant="light">
+                <thead>
                     <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Project</th>
-                    <th>Description</th>
-                    <th>Hourd spent</th>
+                        <th>#</th>
+                        <th>name</th>
+                        <th>Project</th>
+                        <th>Description</th>
+                        <th>hours spent</th>
                     </tr>
                 </thead>
-            <tbody>
-                <tr>
-                <td>1</td>
-                <td>Nagarjun</td>
-                <td>GSSP</td>
-                <td>Entry Level Program Analyst Trainee trained in java,spring boot and RESTful microservice</td>
-                <td>6</td>
-                </tr>
-                <tr>
-                <td>2</td>
-                <td>Jamunaa</td>
-                <td>AlM</td>
-                <td>Program Analyst trained in java,spring boot , RESTful microservice and angular and splunk</td>
-                <td>2</td>
-                </tr>
-                <tr>
-                <td>3</td>
-                <td>Anandha</td>
-                <td>CDE</td>
-                <td>Entry Level System Engineer experienced in windows and linux OS and also in networking</td>
-                <td>4</td>
-                </tr>
-                <tr>
-                <td>4</td>
-                <td>Ragavan</td>
-                <td>BSP</td>
-                <td>Support Enginner but trained in windows and linux OS and also in networking</td>
-                <td>5</td>
-                </tr>
-                <tr>
-                <td>5</td>
-                <td>Raj</td>
-                <td>LIC</td>
-                <td>Entry Level Program Analyst Trainee trained in java,spring boot and RESTful microservice</td>
-                <td>6</td>
-                </tr>
-                <tr>
-                <td>6</td>
-                <td>Anandha</td>
-                <td>CDE</td>
-                <td>Entry Level System Engineer experienced in windows and linux OS and also in networking</td>
-                <td>4</td>
-                </tr>
-                <tr>
-                <td>7</td>
-                <td>Nagarjun</td>
-                <td>GSSP</td>
-                <td>Entry Level Program Analyst Trainee trained in java,spring boot and RESTful microservice</td>
-                <td>6</td>
-                </tr>
-                <tr>
-                <td>8</td>
-                <td>Jayashree</td>
-                <td>RDX</td>
-                <td>Support Enginner but trained in windows and linux OS and also in networking</td>
-                <td>5</td>
-                </tr>
-            </tbody>
+                <tbody>
+                    {
+                        this.state.workLog.map((data, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{data.indexNumber}</td>
+                                    <td>{data.name}</td>
+                                    <td>{data.project}</td>
+                                    <td>{data.text}</td>
+                                    <td>{data.hours}</td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
             </Table>
             </div>
-        )
-    }
+        </div>
+    );
 }
+}
+
 
 export default WorkLog
