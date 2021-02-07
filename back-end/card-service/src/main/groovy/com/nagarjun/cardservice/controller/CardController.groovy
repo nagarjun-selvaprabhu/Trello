@@ -32,18 +32,18 @@ class CardController {
 	
 	@GetMapping("/card")
 	ResponseEntity<Cards> cardDetails(){
-		List<Cards> c = cardsRepo.findAll();
+		List<Cards> listOfCards = cardsRepo.findAll();
 		Gson gson = new Gson();
-		String jsonCartList = gson.toJson(c);
+		String jsonCartList = gson.toJson(listOfCards);
 		println jsonCartList
 		return new ResponseEntity(jsonCartList,HttpStatus.OK);
 	}
 	
 	@GetMapping("/list")
 	ResponseEntity<WorkLog> listDetials(){
-		List<WorkLog> c = logRepo.findAll();
+		List<WorkLog> listOfWorkLogs = logRepo.findAll();
 		Gson gson = new Gson();
-		String jsonCartList = gson.toJson(c);
+		String jsonCartList = gson.toJson(listOfWorkLogs);
 		println jsonCartList
 		return new ResponseEntity(jsonCartList,HttpStatus.OK);
 	}
