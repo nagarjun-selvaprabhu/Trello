@@ -13,6 +13,7 @@ export class Cards extends Component {
     this.state = {
       cardData: [],
       access: false,
+      microserviceDown: '',
     };
     console.log('[Cards.js] constructor');
   };
@@ -24,22 +25,23 @@ export class Cards extends Component {
     };
 
     componentDidMount() {
+      const { history } = this.props;
       axios.get(`http://localhost:8765/card-service/card`)
         .then(res => {  
           console.log(res.data);
           const cardData = res.data;
           this.setState({ cardData });
           
-        })
+        }).catch(this.setState({ microserviceDown: 'Card Microservice is down' }))
     }
 
   render() {
     return (
       <Container fluid="md">
        <Row>
+       <div id='down' style={{justifyContent: 'center'}}><strong>{this.state.microserviceDown}</strong></div>
       {this.state.cardData.map((item,index)=>{
-        return (   
-          
+        return ( 
         <Card key={index} style={{ width: '18rem',paddingLeft: '50px',paddingBottom: '100px',margin: '1em',display: 'flex',flexDirection: 'row' }}
          className="col-3"  onClick={this.handlerFunc}>
           <Card.Body>
