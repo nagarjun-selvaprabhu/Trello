@@ -65,7 +65,7 @@ class Forms extends Component {
       // this.setState({ name: this.name,project:this.project,text:this.text,timeOfWork:this.timeOfWork });
       console.log(res);
       console.log(res.data);
-    })
+    }).catch(alert('Form service is down'))
     console.log(this.state);
   };
 

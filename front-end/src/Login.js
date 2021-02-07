@@ -49,7 +49,7 @@ class Login extends Component {
             }
             console.log(res);
             console.log(res.data);
-          })
+          }).catch(alert('Login microservice is down'))
       };
 
 
