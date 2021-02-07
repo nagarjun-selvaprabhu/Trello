@@ -24,7 +24,7 @@ export class Cards extends Component {
     };
 
     componentDidMount() {
-      axios.get(`http://localhost:8082/card`)
+      axios.get(`http://localhost:8765/card-service/card`)
         .then(res => {  
           console.log(res.data);
           const cardData = res.data;

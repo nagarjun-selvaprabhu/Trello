@@ -9,7 +9,6 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
-	jcenter()
 	mavenCentral()
 }
 
@@ -18,12 +17,14 @@ ext {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.codehaus.groovy:groovy'
-	implementation 'com.google.code.gson:gson:2.8.6'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 }
 
 dependencyManagement {
