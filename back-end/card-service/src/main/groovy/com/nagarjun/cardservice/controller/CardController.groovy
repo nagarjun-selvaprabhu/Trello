@@ -2,6 +2,7 @@ package com.nagarjun.cardservice.controller
 
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cloud.context.config.annotation.RefreshScope
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
@@ -22,6 +23,7 @@ import com.nagarjun.cardservice.repository.LogRepo
 
 @CrossOrigin(origins = "*")
 @RestController
+@RefreshScope
 class CardController {
 	
 	@Autowired
