@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.http.HttpStatus
 import static org.springframework.http.HttpStatus.OK
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 import com.nagarjun.formservice.entity.Form
 import com.nagarjun.formservice.repository.FormRepo
 
@@ -23,12 +26,15 @@ import com.nagarjun.formservice.repository.FormRepo
 @RefreshScope
 class FormController {
 	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private FormRepo formRepo;
 	
 	@PostMapping("/savecard")
 	ResponseEntity<Form> saveCard(@RequestBody Form form) {
-		Form ca = formRepo.save(form);
-		return new ResponseEntity<>(ca , HttpStatus.ACCEPTED);
+		logger.info("inside form microservice to save a card");
+		Form cardSubmit = formRepo.save(form);
+		return new ResponseEntity<>(cardSubmit , HttpStatus.ACCEPTED);
 	}
 }

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.http.HttpStatus
 import static org.springframework.http.HttpStatus.OK
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 import com.google.gson.Gson
 import com.nagarjun.cardservice.entity.Cards
 import com.nagarjun.cardservice.entity.WorkLog
@@ -26,6 +29,8 @@ import com.nagarjun.cardservice.repository.LogRepo
 @RefreshScope
 class CardController {
 	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private CardRepo cardsRepo;
 	
@@ -34,6 +39,7 @@ class CardController {
 	
 	@GetMapping("/card")
 	ResponseEntity<Cards> cardDetails(){
+		logger.info("Inside card microservice to render cards in frontend");
 		List<Cards> listOfCards = cardsRepo.findAll();
 		Gson gson = new Gson();
 		String jsonCartList = gson.toJson(listOfCards);
@@ -43,6 +49,7 @@ class CardController {
 	
 	@GetMapping("/list")
 	ResponseEntity<WorkLog> listDetials(){
+		logger.info("Inside card microservice to render list in frontend");
 		List<WorkLog> listOfWorkLogs = logRepo.findAll();
 		Gson gson = new Gson();
 		String jsonCartList = gson.toJson(listOfWorkLogs);
