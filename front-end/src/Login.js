@@ -49,7 +49,8 @@ class Login extends Component {
             }
             console.log(res);
             console.log(res.data);
-          })
+          }).catch(err =>
+            alert('Login service is down'))
       };
 
 

@@ -27,15 +27,11 @@ export class Cards extends Component {
     componentDidMount() {
       axios.get(`http://localhost:8765/card-service/card`)
         .then(res => {  
-
           console.log(res.data);
           const cardData = res.data;
           this.setState({ cardData });
-          
-          // else{
-          //   alert('card microservice is down');
-          // }
-        })
+        }).catch(err=>
+          alert('card microservice is down'))
     }
 
   render() {
